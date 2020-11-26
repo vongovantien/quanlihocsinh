@@ -10,5 +10,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456789@localhos
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app=app)
+
 admin = Admin(app=app, name="IT82 SHOP", template_mode='bootstrap4')
 login = LoginManager(app=app)

@@ -2,6 +2,7 @@ from flask import render_template, request, redirect
 from saleapp import app, utils, login
 from saleapp.admin import *
 from flask_login import login_user
+import os
 
 
 @app.route("/")
@@ -51,6 +52,29 @@ def login_usr():
 @login.user_loader
 def get_user(user_id):
     return utils.get_user_by_id(user_id=user_id)
+
+
+@app.route('/register', methods=['get','post'])
+def register():
+    if request.method == 'POST':
+        password = request.form.get('password')
+        confirm = request.form.get('confirm-password')
+        if password == confirm:
+            name = request.form.get('name')
+            email = request.form.get('email')
+            username = request.form.get('username')
+            f = request.files["avatar"]
+            avatar_path = 'images/upload/%s' % f.filename
+            f.save(os.path.join(app.root_path, 'static/', avatar_path))
+            if utils.register(name=name, username=username,
+                              email=email, avatar=avatar_path):
+                return redirect('/')
+            else:
+                err_msg = "He thong co loi, vui long dang nhap lai sau"
+        else:
+            err_msg = "May khau khong dung !!"
+
+    return render_template('register.html', err_msg=err_msg)
 
 
 if __name__ == "__main__":

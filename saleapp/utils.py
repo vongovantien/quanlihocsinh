@@ -1,5 +1,6 @@
 import json, hashlib
 from saleapp.models import User, UserRole
+from saleapp import db
 
 
 def read_data(path='data/categories.json'):
@@ -44,5 +45,18 @@ def check_login(username, password, role=UserRole.ADMIN):
 
     return user
 
+
 def get_user_by_id(user_id):
     return User.query.get(user_id)
+
+
+def register(name, email, username, password, avatar):
+    password = hashlib.md5(password.strip().encode('utf-8'))
+    U = User(name=name, email=email,
+             username=username, password=password,
+             avatar=avatar, user_role=UserRole.USER)
+    try:
+        db.sessiom.add(U)
+        db.session.commit()
+    except:
+        return False

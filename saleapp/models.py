@@ -48,5 +48,6 @@ class User(SaleBase, UserMixin):
     active = Column(Boolean, default=True)
     user_role = Column(Enum(UserRole), default=UserRole.USER)
 
+
 if __name__ == '__main__':
     db.create_all()

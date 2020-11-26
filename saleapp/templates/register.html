@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DANG KY</title>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-succes">Dang ky tai khoan</h1>
+        {% if err_msg %}
+        <div class="alert alert-danger">
+            {{ err_msg }}
+        </div>
+        {% endif %}
+        <form method="post" action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Ho va Ten</label>
+                <input type="text"
+                       name="text"
+                       id="name"
+                       required
+                       class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email"
+                       name="email"
+                       id="email"
+                       class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text"
+                       name="username"
+                       id="username"
+                       class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password"
+                       name="password"
+                       id="password"
+                       class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Xac nhan mat khau</label>
+                <input type="confirm-password"
+                       name="confirm-password"
+                       id="confirm-password"
+                       class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label for="avatar">Aanh dai dien</label>
+                <input type="file"
+                       name="avatar"
+                       id="avatar"
+                       class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dang ky"
+                        class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
