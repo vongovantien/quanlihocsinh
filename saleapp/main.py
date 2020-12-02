@@ -77,5 +77,9 @@ def register():
     return render_template('register.html', err_msg=err_msg)
 
 
+def add_or_update_mark():
+    return render_template("mark-add.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
